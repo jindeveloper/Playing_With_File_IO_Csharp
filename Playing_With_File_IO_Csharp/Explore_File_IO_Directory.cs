@@ -24,19 +24,27 @@ namespace Playing_With_File_IO_Csharp
         [Priority(1)]
         public void Test_ProjectPath_Create_Directory()
         {
+            //get the directory-name
             string directoryName = Path.GetDirectoryName(projectPathLocation);
 
+            //App-Data-1 as our directory-name
             string directoryToCreate = AppConfig.ProjectDirectories[0];
 
+            //uses the Path class to combine the two string to create a full path
             string fullPath = Path.Combine(directoryName, directoryToCreate);
 
+            //check whether is exists
             bool exists = Directory.Exists(fullPath);
 
             if (!exists)
             {
+                //Create a new directory
                 var result = Directory.CreateDirectory(fullPath);
 
+                //verifies if not null 
                 Assert.IsNotNull(result);
+
+                //verifies if the instance type is DirectoryInfo
                 Assert.IsInstanceOfType(result, typeof(DirectoryInfo));
             }
         }

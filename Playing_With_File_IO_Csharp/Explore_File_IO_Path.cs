@@ -19,17 +19,21 @@ namespace Playing_With_File_IO_Csharp
         [Priority(1)]
         public void Test_PathLocation_If_Has_FileExtension_And_CheckExtension()
         {
-            Assert.IsTrue(Path.HasExtension(projectPathLocation)); //true because the path has a file extension
-
-            string projectFileExtension = Path.GetExtension(projectPathLocation); //gets the file extension
-
-            Assert.IsTrue(projectFileExtension == ".dll"); //true because the file extension of the assembly is .dll
+            //true because the path has a file extension
+            Assert.IsTrue(Path.HasExtension(projectPathLocation));
+            
+            //gets the file extension
+            string projectFileExtension = Path.GetExtension(projectPathLocation);
+            
+            //true because the file extension of the assembly is .dll
+            Assert.IsTrue(projectFileExtension == ".dll"); 
         }
 
         [TestMethod]
         [Priority(2)]
         public void Test_Path_Method_GetFileName_Wihout_Extension()
         {
+            //try to get the file-name only forget about the extension
             string fileName = Path.GetFileNameWithoutExtension(projectPathLocation);
 
             Assert.AreEqual(fileName, "Playing_With_File_IO_Csharp"); //true
@@ -43,11 +47,11 @@ namespace Playing_With_File_IO_Csharp
 
             string[] fileExtensions = new string[] { "txt", "docx" }; //file-type extension
 
-            string fullPath = System.IO.Path.Combine(projectPathLocation, "Playing_With_File_IO_Csharp.txt");
+            string fullPath = Path.Combine(projectPathLocation, "Playing_With_File_IO_Csharp.txt");
 
             Assert.IsTrue(Regex.IsMatch(fullPath, string.Format(pattern, fileExtensions[0]))); //true
 
-            string changedPath = System.IO.Path.ChangeExtension(fullPath, ".docx");
+            string changedPath = Path.ChangeExtension(fullPath, ".docx");
 
             Assert.IsTrue(Regex.IsMatch(changedPath, string.Format(pattern, fileExtensions[1]))); //true
         }
@@ -56,13 +60,17 @@ namespace Playing_With_File_IO_Csharp
         [Priority(4)]
         public void Test_Path_Method_GetTempFilePath_And_CreateTemporaryFile()
         {
-            string temporaryPath = System.IO.Path.GetTempPath(); //gives you the location for the temporary folder
+            //gives you the location for the temporary folder
+            string temporaryPath = System.IO.Path.GetTempPath();
 
-            Assert.IsTrue(Directory.Exists(temporaryPath)); //lets just check if the temporary path do exists
+            //lets just check if the temporary path do exists
+            Assert.IsTrue(Directory.Exists(temporaryPath));
 
-            string tempFileName = System.IO.Path.GetTempFileName(); //lets create a new (*.tmp) temporary file on disk
+            //lets create a new (*.tmp) temporary file on disk
+            string tempFileName = System.IO.Path.GetTempFileName();
 
-            Assert.IsTrue(File.Exists(tempFileName)); //lets check if the temporary file exists
+            //lets check if the temporary file exists
+            Assert.IsTrue(File.Exists(tempFileName)); 
         }
     }
 }
