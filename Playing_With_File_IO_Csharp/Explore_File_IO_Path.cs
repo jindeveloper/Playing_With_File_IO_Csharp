@@ -19,11 +19,11 @@ namespace Playing_With_File_IO_Csharp
         [Priority(1)]
         public void Test_PathLocation_If_Has_FileExtension_And_CheckExtension()
         {
-            Assert.IsTrue(Path.HasExtension(projectPathLocation));
+            Assert.IsTrue(Path.HasExtension(projectPathLocation)); //true because the path has a file extension
 
-            string projectFileExtension = Path.GetExtension(projectPathLocation);
+            string projectFileExtension = Path.GetExtension(projectPathLocation); //gets the file extension
 
-            Assert.IsTrue(projectFileExtension == ".dll"); //true
+            Assert.IsTrue(projectFileExtension == ".dll"); //true because the file extension of the assembly is .dll
         }
 
         [TestMethod]
@@ -36,6 +36,7 @@ namespace Playing_With_File_IO_Csharp
         }
 
         [TestMethod]
+        [Priority(3)]
         public void Test_Path_Method_GetFile_Then_Change_FileExtension()
         {
             string pattern = @"([^\\]+)\.{0}$"; //pattern to verify file extension
@@ -44,14 +45,15 @@ namespace Playing_With_File_IO_Csharp
 
             string fullPath = System.IO.Path.Combine(projectPathLocation, "Playing_With_File_IO_Csharp.txt");
 
-            Assert.IsTrue(Regex.IsMatch(fullPath, string.Format(pattern, fileExtensions[0])));
+            Assert.IsTrue(Regex.IsMatch(fullPath, string.Format(pattern, fileExtensions[0]))); //true
 
             string changedPath = System.IO.Path.ChangeExtension(fullPath, ".docx");
 
-            Assert.IsTrue(Regex.IsMatch(changedPath, string.Format(pattern, fileExtensions[1])));
+            Assert.IsTrue(Regex.IsMatch(changedPath, string.Format(pattern, fileExtensions[1]))); //true
         }
 
         [TestMethod]
+        [Priority(4)]
         public void Test_Path_Method_GetTempFilePath_And_CreateTemporaryFile()
         {
             string temporaryPath = System.IO.Path.GetTempPath(); //gives you the location for the temporary folder
@@ -61,7 +63,6 @@ namespace Playing_With_File_IO_Csharp
             string tempFileName = System.IO.Path.GetTempFileName(); //lets create a new (*.tmp) temporary file on disk
 
             Assert.IsTrue(File.Exists(tempFileName)); //lets check if the temporary file exists
-
         }
     }
 }
