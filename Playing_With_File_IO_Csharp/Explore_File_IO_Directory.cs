@@ -133,28 +133,5 @@ namespace Playing_With_File_IO_Csharp
                 }
             }
         }
-
-        [TestMethod]
-        [Priority(6)]
-        public void Test_Move_Directory_With_SubDirectories()
-        {
-            string directoryName = Path.GetDirectoryName(projectPathLocation);
-
-            string fullPathDestination = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonDocuments), "MyApp");
-
-            Directory.CreateDirectory(fullPathDestination);
-
-            foreach (var item in AppConfig.projectDirectoriesWithChild)
-            {
-                foreach (var child in item.Value)
-                {
-                    string fullPathSource = Path.Combine(directoryName, item.Key, child);
-
-                    Directory.Move(fullPathSource, fullPathDestination);
-
-                }
-
-            }
-        }
     }
 }
